@@ -41,5 +41,17 @@ namespace LawnMowerTests
             Assert.AreEqual(InputHelper.ReadMowerInput(), InputString);
             Assert.AreEqual(InputHelper.ReadMowerInstructions(), InputString);
         }
+
+        [TestMethod]
+        public void Ensure_Entering_X_Exists_Code()
+        {
+            var mockValidator = new Mock<IValidationHelper>();
+            var mockReader = new Mock<IReader>();
+
+            mockValidator.Setup(v => v.IsValidMowerParam(It.IsAny<string>())).Returns(false);
+            mockReader.Setup(r => r.ReadInput()).Returns("X");
+            var inputHelper = new InputHelper(mockValidator.Object, mockReader.Object);
+            Assert.AreEqual(inputHelper.ReadMowerInput(), "X");
+        }
     }
 }
