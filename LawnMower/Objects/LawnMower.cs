@@ -6,24 +6,24 @@ namespace LawnMower
     {
         public LawnMower(IInputHelper inputHelper)
         {
-            InputHelper = inputHelper;
+            _inputHelper = inputHelper;
         }
 
-        private IInputHelper InputHelper { get; }
+        private readonly IInputHelper _inputHelper;
 
         public string GetMowerInput()
         {
-            return InputHelper.ReadMowerInput();
+            return _inputHelper.ReadMowerInput();
         }
 
         public string GetMowerInstructions()
         {
-            return InputHelper.ReadMowerInstructions();
+            return _inputHelper.ReadMowerInstructions();
         }
 
         public ILawn GetLawnFromInput()
         {
-            return CreateLawn(InputHelper.ReadLawnInput());
+            return CreateLawn(_inputHelper.ReadLawnInput());
         }
 
         public ILawn CreateLawn(string lawnInput)
